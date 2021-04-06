@@ -1,15 +1,17 @@
 package main
 
 import (
+	"crypto/tls"
 	"log"
 	"time"
 
-	"github.com/kevacoin-project/go-electrum"
+	"github.com/kevacoin-project/go-electrum/v2"
 )
 
 func main() {
 	server := electrum.NewServer()
-	if err := server.ConnectTCP("bch.imaginary.cash:50001"); err != nil {
+	conf := &tls.Config{}
+	if err := server.ConnectSSL("ec0.kevacoin.org:50002", conf); err != nil {
 		log.Fatal(err)
 	}
 
